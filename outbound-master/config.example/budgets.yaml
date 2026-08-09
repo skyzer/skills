@@ -1,0 +1,25 @@
+# Anything rationed goes here with a remaining count, so a run can spend it
+# deliberately. Agents allocate a budget well once told it exists, and are
+# completely blind to one that lives only in the operator's head.
+
+linkedin_personal_invites:
+  limit_per_month: 5
+  remaining: 5
+  resets: monthly
+  spend_on: "highest mutual-connection count among tier 1 prospects"
+
+daily_sends:
+  limit: 200
+  remaining: 200
+  resets: daily
+
+verification_credits:
+  limit_per_month: 10000
+  remaining: 10000
+  resets: monthly
+
+warm_intro_asks:
+  limit_per_month: 3
+  remaining: 3
+  resets: monthly
+  spend_on: "only mutuals you know well enough to actually ask"

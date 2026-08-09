@@ -1,0 +1,26 @@
+# Your configuration and data. Never commit these.
+config/
+state/
+runs/
+.env
+
+# Credentials in any form
+*service-account*.json
+*credentials*.json
+.encryption_key
+credentials.enc
+token_cache.json
+*.pem
+*.key
+
+# Spreadsheets and logs contain prospect data
+*.xlsx
+*.xls
+*.jsonl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store

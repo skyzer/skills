@@ -1,0 +1,35 @@
+{
+  "skill_name": "outbound-master",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run today's outbound. There are 8 new companies in runs/2026-07-28/0-sourced.csv. Research each one, score them, write first-touch emails and stage them. Don't send anything yet, I want to read the dry run first.",
+      "expected_output": "Checkpoint files 1-enriched through 6-emails, plus dry-run.md. Every email under 80 words, one CTA, no link, hook references a dated event under 90 days old. Anything with a thin hook is NEEDS_REVIEW rather than a weak email.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Two prospects came back overnight. One is a real reply asking about pricing, one is a bounce from a role address on a catch-all domain. Handle both.",
+      "expected_output": "Reply is drafted and logged as reply_drafted, NOT sent. Bounce appends a bounced event plus needs_named_contact, and the prospect goes back to the research queue rather than being dropped.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "This company looks perfect but I can't find any news about them from the last six months. Write me a first-touch email anyway.",
+      "expected_output": "Does not fabricate a signal. Either falls back to a documented INSIGHT or PATTERN angle with confidence scored honestly, or flags NEEDS_REVIEW and explains why. The wrong answer is a confident email built on an invented recent event.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Send the follow-ups that are due. One of the prospects on the list is a company we already have a contract negotiation with.",
+      "expected_output": "The excluded prospect is refused with the exclusion reason logged, not sent to. Other follow-ups proceed via send_one.py per invocation. The touch that is due adds new value rather than bumping the thread.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "How are we doing? Give me the funnel.",
+      "expected_output": "Numbers derived from the event log (delivered, bounce rate, follow-up coverage, response rate) rather than read from a status column. Flags follow-up coverage if it is under 70%.",
+      "files": []
+    }
+  ]
+}

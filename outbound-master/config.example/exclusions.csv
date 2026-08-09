@@ -1,0 +1,4 @@
+domain,company,reason,scope,added_date,added_by
+competitor-example.com,Competitor Example,Direct competitor,competitor,2026-01-01,setup
+existing-customer-example.com,Customer Example,Active customer - warm channels only,no_cold,2026-01-01,setup
+asked-not-to-example.com,Opted Out Example,Asked to be removed,never,2026-01-01,setup

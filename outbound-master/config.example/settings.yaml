@@ -1,0 +1,44 @@
+# Technical settings. Set these once and forget them.
+# Nothing here describes your business; that lives in brief.md.
+#
+# Sections: providers (how mail is sent and addresses checked), limits, copy
+
+providers:
+  email:
+    type: gmail_service_account
+  verifier:
+    type: emaillistverify
+    recheck_after_days: 90
+  research:
+    # How prospects get researched and enriched.
+    #   agent       the runtime's own web search (Claude Code and Cowork have one
+    #               built in). Zero setup, and the right default.
+    #   brave       Brave Search API. Keyword + news search with freshness
+    #               filters. Needed when the runtime has no web tools (plain
+    #               cron) or you want cheaper, faster bulk lookups.
+    #   perplexity  Perplexity API. Research answers with citations, best for
+    #               "what does this company do" synthesis questions.
+    # Keys go in .env (BRAVE_API_KEY / PERPLEXITY_API_KEY), never here.
+    # Accepts one provider or a list. With both, each job routes to the one
+    # that's good at it: brave for search/news, perplexity for synthesis,
+    # enrichment uses both.
+    #   type: [brave, perplexity]
+    type: agent
+limits:
+  daily_sends: 200
+  per_channel_daily:
+    email: 200
+    telegram: 20
+    linkedin: 15
+  spacing_seconds:
+  - 40
+  - 65
+# The copy limits the send scripts enforce mechanically. The judgment rules
+# (banned phrases, the five tests, hook confidence) live in the skill; these
+# are just the numbers send_one.py and dry_run.py check before dispatch.
+copy:
+  max_words: 80
+  max_links_first_touch: 0
+  subject_max_chars: 60
+  min_hook_confidence: 6
+  signal_max_age_days: 90
