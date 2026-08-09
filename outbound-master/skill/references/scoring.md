@@ -10,7 +10,7 @@ Weights and bands are configurable in the brief (`config/brief.md`). The default
 
 | Component | Points | What earns full marks |
 |---|---|---|
-| Cohort match | 15 | Falls cleanly into a cohort in the brief (`config/brief.md`) |
+| Group match | 15 | Falls cleanly into a group in the brief (`config/brief.md`) |
 | Would their users actually use it | 12 | Evidence their user base has the need, not just the company |
 | Gap in their current stack | 8 | They visibly lack the thing, or run a worse version of it |
 
@@ -62,7 +62,7 @@ Tier 4 prospects stay in `state/prospects.csv`. Deleting them means re-finding a
 
 One or two sentences, in `3-scored.csv`, that a person can disagree with. Name the biggest contributor and the biggest drag.
 
-Good: *"Strong cohort fit and a dated licence announcement 12 days old, but reachability capped at half because the only address is a shared inbox on a catch-all domain."*
+Good: *"Strong group fit and a dated licence announcement 12 days old, but reachability capped at half because the only address is a shared inbox on a catch-all domain."*
 
 Bad: *"Good fit, high priority."*
 

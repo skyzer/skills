@@ -27,10 +27,10 @@ Open `config/brief.md`. This is not technical configuration — it's the brief y
 It's a markdown document, not a schema. The fastest way to fill it in is to point your agent at whatever notes you already keep about your offerings and customers and say "build my brief from this", then argue with the draft. The sections:
 
 - **Company** — what you sell, in a customer's words. One credential phrase: the single phrase that kills the first objection your market raises (a licence, a certification, a marquee backer).
-- **Offerings** — one subsection per thing you sell, so different cohorts can be pitched different products.
+- **Offerings** — one subsection per thing you sell, so different groups can be pitched different products.
 - **Claims** — allowed (what you can evidence) and never (the things that are almost true but aren't). The agent treats the never list as absolute.
 - **Sender** — whose name is on the email, and one line of credibility.
-- **Cohorts** — who you sell to, in groups, each naming its offering, pain point and angle. This is what stops every email being the same template with the name swapped. Two groups is enough to start.
+- **Groups** — who you sell to, in groups, each naming its offering, pain point and angle. This is what stops every email being the same template with the name swapped. Two groups is enough to start.
 - **Target markets** — where you actually operate today; deal-shape scoring uses it.
 
 `config/settings.yaml` is the technical half: which mail provider, which verifier, rate limits. Two minutes, then forget it.
@@ -69,7 +69,7 @@ python3 scripts/import_leads.py path/to/your_leads.csv             # imports
 
 Column names don't need to match anything: "Company Name", "Account" and "Organisation" all land in the right place, and unmatched columns are listed rather than silently dropped (`--map "TheirCol=field"` for stragglers). Re-running is safe — imports merge and dedupe. If your export has a status column (Sent, Replied, Bounced...), your history comes across too, so follow-ups pick up where your old system left off instead of starting cold.
 
-No list yet? Skip this — tell your agent to research companies in your cohorts and it starts from zero. Research uses your agent's built-in web search by default; if you'd rather run it through an API (or your runtime has no web tools), set `providers.research.type: brave` or `perplexity` in `config/settings.yaml` and drop `BRAVE_API_KEY` / `PERPLEXITY_API_KEY` into `.env`.
+No list yet? Skip this — tell your agent to research companies in your groups and it starts from zero. Research uses your agent's built-in web search by default; if you'd rather run it through an API (or your runtime has no web tools), set `providers.research.type: brave` or `perplexity` in `config/settings.yaml` and drop `BRAVE_API_KEY` / `PERPLEXITY_API_KEY` into `.env`.
 
 ## Step 6: First run
 

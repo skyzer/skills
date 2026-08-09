@@ -32,7 +32,7 @@ Never send to a pattern-guessed address that hasn't come back tier 1. The guess 
 
 ## When there's no email at all
 
-Whole cohorts don't publish addresses. A lead with no email is not a dead lead, it's a lead on a different channel. `state/people.csv` carries the alternatives, and the agent uses whichever is populated:
+Whole groups don't publish addresses. A lead with no email is not a dead lead, it's a lead on a different channel. `state/people.csv` carries the alternatives, and the agent uses whichever is populated:
 
 | Channel | When it's right | Notes |
 |---|---|---|

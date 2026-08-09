@@ -25,7 +25,7 @@ send scripts enforce live in `settings.yaml` either way.)
 
 ## Offerings
 
-One subsection per thing you sell. Each cohort below names which offering to
+One subsection per thing you sell. Each group below names which offering to
 lead with, so a prospect never gets pitched the wrong one.
 
 ### [offering-one, e.g. "widget"]
@@ -59,19 +59,19 @@ Notes: [e.g. feature X is roadmap; say "when it goes live", never as current.]
 - Credibility marker: [e.g. previously co-founded X]
 - Email: [you@example.com]
 
-## Cohorts
+## Groups
 
-Who you sell to, in groups. Each cohort gets its own pain point and angle;
+Who you sell to, in groups. Each group gets its own pain point and angle;
 that's what stops every email being the same template with the name swapped.
-Two cohorts is enough to start.
+Two groups is enough to start.
 
-| Abbr | Cohort | Offering | Pain point | Angle | Signals to watch |
+| Abbr | Group | Offering | Pain point | Angle | Signals to watch |
 |------|--------|----------|------------|-------|------------------|
 | SEG1 | [Consumer platforms whose end users would use what you sell] | [offering-one] | [they want to offer it without building it] | [no engineering time, revenue share] | growth, funding |
 | SEG2 | [Companies building products that need your capability underneath] | [offering-two] | [coverage gap in specific markets] | [depth of coverage, compliance handled] | product_launch, expansion, competitor_move |
 
-Fallback angle when a cohort prospect has no recent signal: [an INSIGHT or
-PATTERN angle per cohort, or "don't force it" — see copy-rules.]
+Fallback angle when a group prospect has no recent signal: [an INSIGHT or
+PATTERN angle per group, or "don't force it" — see copy-rules.]
 
 ## Target markets
 

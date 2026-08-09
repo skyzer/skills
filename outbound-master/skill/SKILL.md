@@ -54,14 +54,14 @@ Sourcing and enrichment need web search, and where it comes from is a config dec
 - `agent` (the default): use your own web tools. Cowork and Claude Code both have search built in, and your judgment about which result matters beats any API's ranking.
 - `brave`, `perplexity`, or a list of both: call `scripts/research.py` instead — `search` and `news` for signals with freshness filters, `enrich <domain>` for the company picture, `ask` (perplexity only) for synthesis questions. With both configured, each command routes to the provider that's good at it. It returns JSON; weaving it into the checkpoint files is still your job.
 
-Either way the standard is the same: a signal needs a date and a source URL in `2-signals.csv`, and an enrichment claim you can't cite doesn't go in `1-enriched.csv`. If you have neither web tools nor a configured provider, say so and work only from what's already in `state/` — imported leads still get scored on cohort fit under the missing-data ceiling, they just can't get hooks.
+Either way the standard is the same: a signal needs a date and a source URL in `2-signals.csv`, and an enrichment claim you can't cite doesn't go in `1-enriched.csv`. If you have neither web tools nor a configured provider, say so and work only from what's already in `state/` — imported leads still get scored on group fit under the missing-data ceiling, they just can't get hooks.
 
 ## The checkpoint files
 
 Every stage writes a file the next stage reads, under `runs/<date>/`:
 
 ```
-0-sourced.csv     company, domain, cohort, source, found_date
+0-sourced.csv     company, domain, group, source, found_date
 1-enriched.csv    what they do, current stack, founder, socials, why we fit
 2-signals.csv     one row per signal: type, date, url, freshness_days
 3-scored.csv      score, tier, sub-scores, scoring_reasoning

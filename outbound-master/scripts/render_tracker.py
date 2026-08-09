@@ -159,7 +159,7 @@ def main():
         ws,
         ["Company", "Cohort", "Fit", "Country", "Score", "Tier",
          "Current status", "Last action", "Last touch", "Scoring reasoning"],
-        [[p.get("company"), p.get("cohort"), p.get("product_fit"), p.get("country"),
+        [[p.get("company"), p.get("group"), p.get("product_fit"), p.get("country"),
           p.get("score"), p.get("tier"),
           latest.get(p.get("company"), {}).get("action", "not contacted"),
           latest.get(p.get("company"), {}).get("detail", ""),

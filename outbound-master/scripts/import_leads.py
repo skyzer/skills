@@ -45,7 +45,7 @@ ALIASES = {
                   "organization", "org", "firm", "business", "name"],
     "domain":    ["domain", "companydomain", "domainname"],
     "website":   ["website", "url", "site", "web", "homepage", "companywebsite"],
-    "cohort":    ["cohort", "category", "segment", "vertical", "industry", "type"],
+    "group":     ["group", "cohort", "category", "segment", "vertical", "industry", "type"],
     "what_they_do": ["whattheydo", "description", "about", "summary"],
     "current_stack": ["currentstack", "currentpayment", "currentpaymentcrypto",
                       "techstack", "stack", "currentprovider", "currentcryptoprovider"],
@@ -106,7 +106,7 @@ IMPLIED_BY = {
     "closed_lost": ["sent", "reply_received"],
 }
 
-PROSPECT_FIELDS = ["company", "domain", "cohort", "product_fit", "what_they_do",
+PROSPECT_FIELDS = ["company", "domain", "group", "product_fit", "what_they_do",
                    "current_stack", "why_we_fit", "country", "size_band", "website",
                    "source", "found_date", "score", "tier", "scoring_reasoning",
                    "scored_date"]
@@ -239,7 +239,7 @@ def main():
         domain = get(row, "domain") or domain_of(email, get(row, "website"))
 
         prospects.append({
-            "company": company, "domain": domain, "cohort": get(row, "cohort"),
+            "company": company, "domain": domain, "group": get(row, "group"),
             "product_fit": "", "what_they_do": get(row, "what_they_do"),
             "current_stack": get(row, "current_stack"),
             "why_we_fit": get(row, "why_we_fit"), "country": get(row, "country"),

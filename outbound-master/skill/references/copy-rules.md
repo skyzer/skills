@@ -1,6 +1,6 @@
 # Copy rules
 
-Read this in full before writing the first email of a run. Product facts, the credential phrase, the sender identity and the angle per cohort all come from the brief (`config/brief.md`).
+Read this in full before writing the first email of a run. Product facts, the credential phrase, the sender identity and the angle per group all come from the brief (`config/brief.md`).
 
 ## The shape
 
@@ -49,7 +49,7 @@ Score each hook 1 to 10 before writing the rest of the email.
 | 9-10 | Specific dated event, connected naturally to what you sell |
 | 7-8 | Real signal, connection takes one inferential step |
 | 6 | Defensible but generic. Sendable. |
-| 4-5 | Could apply to most companies in the cohort |
+| 4-5 | Could apply to most companies in the group |
 | 1-3 | Company name in a template |
 
 **Below 6, write `NEEDS_REVIEW` in the hook field, set `review_flag` to TRUE, and don't send.** Flagging is cheaper than polishing a weak angle, and much cheaper than spending a prospect on one.
@@ -95,7 +95,7 @@ Banned phrase lists are the easy half of this. Negative rules are simple to writ
 
 Every email passes all five before it enters `6-emails.csv`.
 
-1. **Swappability.** Replace the company name with a different company in the same cohort. Does it read identically? Then it's a template. Back it goes.
+1. **Swappability.** Replace the company name with a different company in the same group. Does it read identically? Then it's a template. Back it goes.
 2. **Temporal.** Does it reference something from the last 90 days? Personalization that isn't recent looks fake, because it is.
 3. **Structure variation.** Across a batch of ten, no two emails open with the same sentence structure. Check the batch, not the email.
 4. **Rhythm.** Mix short sentences with long ones. Never three consecutive sentences of similar length. Uniform rhythm is the most reliable machine tell there is.

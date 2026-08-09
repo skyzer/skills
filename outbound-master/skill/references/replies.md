@@ -1,6 +1,6 @@
 # Handling what comes back
 
-Reply handling lives in this skill rather than a separate one, because a reply is a state transition in a sequence this skill already owns. Replying well needs to know what was sent, which hook it used, which touch it was, and what the prospect's cohort is. All of that is here.
+Reply handling lives in this skill rather than a separate one, because a reply is a state transition in a sequence this skill already owns. Replying well needs to know what was sent, which hook it used, which touch it was, and what the prospect's group is. All of that is here.
 
 ## The guard is a missing capability, not a rule
 
@@ -54,6 +54,6 @@ Patterns worth following:
 
 ## After the draft
 
-Append `reply_drafted` with the draft id. Update the prospect. If the reply changes what you know about them (wrong cohort, different product fit, a market you didn't know they were in), fix `state/prospects.csv`, because a reply is the most reliable research you'll ever get.
+Append `reply_drafted` with the draft id. Update the prospect. If the reply changes what you know about them (wrong group, different product fit, a market you didn't know they were in), fix `state/prospects.csv`, because a reply is the most reliable research you'll ever get.
 
 Then tell the operator, at the top of the run summary, with the sender, the gist, and where the draft is. Replies waiting on a human are the only thing in a run that has a clock on it.

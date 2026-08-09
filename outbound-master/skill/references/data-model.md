@@ -13,7 +13,7 @@ So: slow-changing data in `prospects.csv` and `people.csv`, fast-changing data i
 One row per company. Written when the prospect is found, updated rarely.
 
 ```
-company,domain,cohort,product_fit,what_they_do,current_stack,why_we_fit,
+company,domain,group,product_fit,what_they_do,current_stack,why_we_fit,
 country,size_band,website,source,found_date,score,tier,scoring_reasoning,scored_date
 ```
 
@@ -88,7 +88,7 @@ Agents allocate a budget well once told it exists, and are completely blind to o
 Appended after every batch, read at the start of every run. This is what makes the system compound instead of starting from the same priors forever.
 
 ```markdown
-## 2026-07-28 — [cohort]
+## 2026-07-28 — [group]
 
 Sent: N first touch, M follow-ups. Bounced: X. Replies: Y.
 Hook types used: SIGNAL n, INSIGHT n, PATTERN n

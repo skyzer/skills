@@ -105,11 +105,11 @@ def cfg(dotted, default=None):
     return node
 
 
-def cohort(abbr_or_name):
-    """Look up a cohort by its short code or its name. The abbreviation is what
+def group(abbr_or_name):
+    """Look up a group by its short code or its name. The abbreviation is what
     goes in CSV columns, so it stays short and stable; the full text is what the
     agent reads to understand the group."""
-    for c in config().get("cohorts") or []:
+    for c in (config().get("groups") or config().get("cohorts") or []):
         if abbr_or_name in (c.get("abbr"), c.get("name")):
             return c
     return None
