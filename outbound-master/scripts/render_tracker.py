@@ -157,7 +157,7 @@ def main():
     ws.title = "Prospects"
     write_sheet(
         ws,
-        ["Company", "Cohort", "Fit", "Country", "Score", "Tier",
+        ["Company", "Group", "Fit", "Country", "Score", "Tier",
          "Current status", "Last action", "Last touch", "Scoring reasoning"],
         [[p.get("company"), p.get("group"), p.get("product_fit"), p.get("country"),
           p.get("score"), p.get("tier"),
