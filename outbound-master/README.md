@@ -18,7 +18,6 @@ folder, and have your own agent.
 preflight        credentials, config and cap checks, refuses to run if a key is exposed
 check inbox      replies, bounces, auto-responders. Replies get drafted, never sent.
 queue follow-ups everything due in the 5-touch sequence
-source and score 100-point rubric, tiers, reasoning you can argue with
 research          one recent, dated, specific signal per prospect
 write             under 80 words, their news first, one CTA
 deslop            a separate pass, with fresh eyes
@@ -30,6 +29,11 @@ reconcile         append events, write the run summary
 Each stage writes a numbered file the next one reads, so you can open a
 checkpoint mid-run, disagree with it, edit it, and the next stage honours your
 edit.
+
+Sourcing new prospects is deliberately not on that list. A run works the
+pipeline that exists; finding new companies is a separate ask the operator
+triggers ("source prospects", or a specific target), because who enters the
+funnel is a decision that shouldn't happen quietly on a schedule.
 
 ## Quickstart
 

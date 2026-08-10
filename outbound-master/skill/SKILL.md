@@ -43,9 +43,14 @@ Then, in order:
 2. **Check the inbox.** `scripts/check_inbox.py` classifies replies, bounces and auto-responders. Archive the noise. For a real reply, append `reply_received`, stop that prospect's sequence, then draft via `scripts/draft_reply.py`. See `references/replies.md`.
 3. **Process bounces.** A bounce appends a `bounced` event and, if the address was a role address on a catch-all domain, adds a note that a named human is needed.
 4. **Queue follow-ups.** Anything due per `references/sequence.md` that hasn't replied, bounced or been excluded.
-5. **Source and score new prospects** if the queue is thinner than the daily cap allows. See `references/scoring.md`.
-6. **Research, write, deslop, validate, send.** Pipeline it, don't waterfall it: research a batch of five to ten, write and send that batch, then start the next. Waiting for fifty research results before writing anything wastes the whole run if it dies halfway.
-7. **Write the run summary** to `runs/<date>/summary.md` and append to `state/campaign_history.md`.
+5. **Research, write, deslop, validate, send** for prospects already in the pipeline. Pipeline it, don't waterfall it: research a batch of five to ten, write and send that batch, then start the next. Waiting for fifty research results before writing anything wastes the whole run if it dies halfway.
+6. **Write the run summary** to `runs/<date>/summary.md` and append to `state/campaign_history.md`. If the queue is running thin, say so in the summary so the operator knows sourcing is due — don't source on your own.
+
+## Sourcing is a separate ask, never part of a run
+
+A run works the pipeline that exists: replies, bounces, follow-ups, sends to prospects already sourced and scored. It does not go looking for new companies. Sourcing happens only when the operator asks for it — "source prospects" (work from the groups in the brief), a specific target ("find 20 freight forwarders in Nigeria"), or a pasted artifact ("any prospects in this list?"). See `references/scoring.md` for scoring what you find.
+
+The reason for the split: sending to an existing pipeline is cheap to verify and bounded by the daily cap, but sourcing decides who enters the funnel at all, and that's a judgment the operator should trigger deliberately rather than have happen quietly on a schedule. An agent that quietly grows its own prospect list is an agent whose mistakes compound while nobody is looking. When the queue runs dry, flag it in the summary; the operator sources when they're ready.
 
 ## How research happens
 

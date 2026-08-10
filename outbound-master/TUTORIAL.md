@@ -91,7 +91,7 @@ Happy with the dry run? Flip `DRY_RUN=0` in `.env` and tell the agent to run aga
 
 ## Step 8: Schedule it
 
-Paste the prompt block from `scheduler/task-prompt.md` into your scheduler — a Cowork scheduled task, or cron calling your agent's CLI. Daily is the right default. Each run: check the inbox, draft replies (never send them — see below), send due follow-ups, research and send the next batch, log everything.
+Paste the prompt block from `scheduler/task-prompt.md` into your scheduler — a Cowork scheduled task, or cron calling your agent's CLI. Daily is the right default. Each run: check the inbox, draft replies (never send them — see below), send due follow-ups, send first touches to prospects already in the pipeline, log everything. Sourcing new companies is deliberately NOT part of the scheduled run — you trigger it yourself with "source prospects" when you want the funnel topped up.
 
 ## The three guards you're trusting
 

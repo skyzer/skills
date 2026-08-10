@@ -26,9 +26,12 @@ Before anything else:
 Then do one run as SKILL.md describes.
 
 Scope for this run:
-- New prospects: up to <N> companies
-- Follow-ups: everything due
 - Replies: classify and draft, never send
+- Follow-ups: everything due
+- First touches: only to prospects already sourced and scored
+- No sourcing. Do not go looking for new companies; if the queue is running
+  thin, say so in the summary and stop there. Sourcing is a separate ask the
+  operator makes deliberately.
 
 Two rules that hold even if the skill file cannot be read:
 - Cold outreach sends without approval. A reply to a human never does. Draft it,
