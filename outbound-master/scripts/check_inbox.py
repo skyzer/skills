@@ -34,6 +34,9 @@ AUTO_SUBJECTS = re.compile(
 UNSUB = re.compile(
     r"(unsubscribe|remove me|take me off|stop (emailing|contacting)|do not contact|"
     r"opt.?out)", re.I)
+SMTP_CODE = re.compile(
+    r"Diagnostic-Code:\s*smtp;\s*([45]\d\d[^\r\n]{0,60})"
+    r"|\b([45]\d\d[ -]\d\.\d{1,3}\.\d{1,3})\b", re.I)
 
 
 def service():
@@ -109,7 +112,17 @@ def main():
             continue
 
         action = classify(sender, subject, text)
-        detail = subject if action != "reply_received" else text.strip().split("\n")[0][:200]
+        if action == "bounced":
+            # The SMTP code (550 5.1.1 = dead address, 4.x.x = retryable,
+            # 5.7.x = blocked/reputation) lives in the DSN body, not the
+            # subject. Fixed prefix so `detail` stays splittable on " | ".
+            m = SMTP_CODE.search(text)
+            code = (m.group(1) or m.group(2)).strip() if m else "code-not-found"
+            detail = f"{code} | {subject}"
+        elif action == "reply_received":
+            detail = text.strip().split("\n")[0][:200]
+        else:
+            detail = subject
         append_event(company, action, domain=domain, person_email=sender,
                      detail=detail, message_id=stub["id"])
         summary[action].append({"company": company, "from": sender,
