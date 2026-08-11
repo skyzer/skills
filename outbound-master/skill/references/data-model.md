@@ -54,6 +54,8 @@ do_not_contact   needs_named_contact
 
 If a situation doesn't fit one of these, use the closest and put the nuance in `detail`. Inventing an action breaks every count downstream, and free-text status is how a tracker turns into prose within a week.
 
+For `bounced` events, `detail` has a fixed shape: `<smtp-code> | <subject>`, e.g. `550 5.1.1 | Undeliverable: quick question`. The code comes from the DSN body (`check_inbox.py` extracts it; `code-not-found` means the DSN carried none) and it's what separates a dead address (550 5.1.1 — never retry) from a full mailbox (4.2.2 — retry later) from a reputation block (5.7.x — stop sending and look at your domain, not the prospect). Filter `action=bounced` and split `detail` on `|` to aggregate by code; rows from before this convention read as if the code weren't found.
+
 **Why append-only matters:** an overwritten status column can only ever tell you where things stand right now. It can't tell you the reply rate, the follow-up coverage, or whether touch three does anything, because the history is gone. Those are the questions worth answering.
 
 ## `state/exclusions.csv`
