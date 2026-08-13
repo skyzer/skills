@@ -1,0 +1,4 @@
+interface:
+  display_name: "Delegate Wave"
+  short_description: "Delegate bounded coding work to Pi safely"
+  default_prompt: "Use $delegate-wave to delegate a bounded repository task to Pi and independently verify the result."
