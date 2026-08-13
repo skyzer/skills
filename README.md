@@ -14,6 +14,17 @@ For bounded Pi/DeepSeek coding delegation:
 
 > Install the delegate-wave skill from github.com/skyzer/skills and use it for this repository task.
 
+`delegate-wave` uses a controller-worker model rather than delegating everything:
+
+| Role | What it does |
+|---|---|
+| **Codex or Claude: controller** | Decomposes the task, makes architecture and product decisions, defines acceptance checks, reviews the diff, and owns commits, PRs, merges, and releases. |
+| **DeepSeek V4 Flash: default worker** | Handles bounded discovery, mechanical implementation, and test generation through Pi. |
+| **DeepSeek V4 Pro: fallback worker** | Handles a difficult, well-specified task only after Flash fails once or review finds a reasoning defect. |
+
+This keeps expensive controller context focused on judgment while moving only
+explicit, verifiable work packets to a lower-cost worker.
+
 That's the whole request. The agent fetches the named skill, reads its `SKILL.md`, and performs only the setup that skill declares. Everything an agent needs to know is in each skill's folder; nothing here assumes a human at a terminal.
 
 Doing it by hand instead:
@@ -32,7 +43,7 @@ pip3 install -r requirements.txt
 | Skill | Function | What it does |
 |---|---|---|
 | [`outbound-master`](outbound-master/) | Sales | Runs B2B cold outbound end to end: sources, scores, researches a dated hook, writes and deslops the copy, verifies every address, sends idempotently on a spaced schedule, tracks every touch in an append-only event log, and drafts replies a human approves. Refuses to send when it shouldn't. |
-| [`delegate-wave`](delegate-wave/) | Engineering | Delegates bounded discovery and implementation to Pi with DeepSeek V4, enforces clean-worktree and file-scope gates, records cost and verification, and keeps review and release authority with the controlling agent. |
+| [`delegate-wave`](delegate-wave/) | Engineering | Keeps Codex or Claude in control of decomposition, architecture, diff review, and release; delegates bounded discovery, mechanical implementation, and tests to DeepSeek Flash through Pi; and reserves DeepSeek Pro for difficult fallbacks. |
 
 More coming. Each new skill lands as its own folder with the same shape.
 

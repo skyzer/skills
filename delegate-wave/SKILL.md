@@ -1,11 +1,24 @@
 ---
 name: delegate-wave
-description: "Delegate bounded repository discovery, implementation, or test work to the Pi coding agent with DeepSeek V4 while the controlling agent retains planning, review, and release authority. Use when a coding task has an explicit scope, allowed paths, and acceptance checks and would otherwise consume substantial context through repeated file reads or mechanical edits. Do not use for ambiguous product decisions, secrets, production operations, deployments, destructive Git actions, database migrations, or security-critical changes."
+description: "Use a controller-worker coding workflow: Codex or Claude retains task decomposition, architecture decisions, diff review, and release authority; Pi with DeepSeek V4 Flash handles bounded discovery, mechanical implementation, and test generation; DeepSeek V4 Pro is an exceptional fallback for difficult reasoning. Use when a repository task has explicit scope, allowed paths, and acceptance checks. Do not use for ambiguous product decisions, secrets, production operations, deployments, destructive Git actions, database migrations, or security-critical changes."
 ---
 
 # Delegate Wave
 
-Use Pi as a cheap worker, not as the supervisor. The controlling agent owns the plan, selects a bounded packet, independently reviews the result, and performs any merge or release.
+Delegate Wave is a controller-worker workflow, not a replacement for Codex or
+Claude and not a rule to delegate everything.
+
+## Who Does What
+
+| Role | Model | Responsibilities |
+|---|---|---|
+| Controller | Codex or Claude | Understand the user request, decompose the task, make product and architecture decisions, define acceptance checks, review the complete diff, and own commits, PRs, merges, and releases. |
+| Default worker | Pi with DeepSeek V4 Flash | Perform bounded repository discovery, mechanical implementation, and test generation inside an explicit file scope. |
+| Escalation worker | Pi with DeepSeek V4 Pro | Retry a genuinely difficult, well-specified reasoning task only after Flash fails once or the controller identifies a reasoning defect. |
+
+The controller owns the plan, sends one bounded work packet at a time,
+independently verifies every result, and can repair or reject the worker's
+output. Pi is a lower-cost execution worker, never the supervisor.
 
 Run `scripts/delegate_wave.py` rather than invoking Pi ad hoc. The wrapper
 refuses worktrees containing common secret/state files, disables ambient Pi
