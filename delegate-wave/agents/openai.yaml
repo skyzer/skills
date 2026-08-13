@@ -1,4 +1,4 @@
 interface:
   display_name: "Delegate Wave"
-  short_description: "Delegate bounded coding work to Pi safely"
-  default_prompt: "Use $delegate-wave to delegate a bounded repository task to Pi and independently verify the result."
+  short_description: "Keep Codex in control; delegate bounded work"
+  default_prompt: "Use $delegate-wave with Codex or Claude as controller, DeepSeek Flash as the bounded worker, and DeepSeek Pro only as a difficult-task fallback. Independently verify the result."
