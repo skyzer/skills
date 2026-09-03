@@ -1,0 +1,9 @@
+# Your configuration and data. Never commit these.
+config/
+state/
+runs/
+.env
+*.jsonl
+__pycache__/
+*.pyc
+.DS_Store
