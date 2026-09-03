@@ -1,6 +1,6 @@
 # skills
 
-Agent skills that help a small company ship, win its first users, and reach its first revenue.
+Agent skills that get a company its first users and its first revenue.
 
 Each skill replaces a specialist a small company can't afford to hire yet, and each is self-contained in its own folder: instructions, scripts, example config, and a real example of its output. They run on Claude Code, Claude Cowork, Codex, or anything else that reads files and runs a shell. State lives in files you own, not in a vendor.
 
@@ -10,22 +10,7 @@ Point your agent at this repo and name the skill:
 
 > Install the outbound-master skill from github.com/skyzer/skills and set it up.
 
-For bounded Pi/DeepSeek coding delegation:
-
-> Install the delegate-wave skill from github.com/skyzer/skills and use it for this repository task.
-
-`delegate-wave` uses a controller-worker model rather than delegating everything:
-
-| Role | What it does |
-|---|---|
-| **Codex or Claude: controller** | Decomposes the task, makes architecture and product decisions, defines acceptance checks, reviews the diff, and owns commits, PRs, merges, and releases. |
-| **DeepSeek V4 Flash: default worker** | Handles bounded discovery, mechanical implementation, and test generation through Pi. |
-| **DeepSeek V4 Pro: fallback worker** | Handles a difficult, well-specified task only after Flash fails once or review finds a reasoning defect. |
-
-This keeps expensive controller context focused on judgment while moving only
-explicit, verifiable work packets to a lower-cost worker.
-
-That's the whole request. The agent fetches the named skill, reads its `SKILL.md`, and performs only the setup that skill declares. Everything an agent needs to know is in each skill's folder; nothing here assumes a human at a terminal.
+That's the whole install. The agent clones the repo, runs the skill's `install.sh`, pulls in the dependencies, and walks you through the configuration the skill's own docs describe. Everything an agent needs to know is in each skill's folder; nothing here assumes a human at a terminal.
 
 Doing it by hand instead:
 
@@ -36,14 +21,14 @@ cd skills/outbound-master
 pip3 install -r requirements.txt
 ```
 
-`delegate-wave` requires Python 3, Git, [Pi](https://pi.dev) 0.84.1 or newer, and a DeepSeek API key available through `DEEPSEEK_API_KEY` or Pi's native credential store. It has no Python package dependencies. Install it by linking or copying `delegate-wave/` into `~/.codex/skills/delegate-wave` or the equivalent skills directory for your agent.
-
 ## The skills
 
 | Skill | Function | What it does |
 |---|---|---|
 | [`outbound-master`](outbound-master/) | Sales | Runs B2B cold outbound end to end: sources, scores, researches a dated hook, writes and deslops the copy, verifies every address, sends idempotently on a spaced schedule, tracks every touch in an append-only event log, and drafts replies a human approves. Refuses to send when it shouldn't. |
-| [`delegate-wave`](delegate-wave/) | Engineering | Keeps Codex or Claude in control of decomposition, architecture, diff review, and release; delegates bounded discovery, mechanical implementation, and tests to DeepSeek Flash through Pi; and reserves DeepSeek Pro for difficult fallbacks. |
+| [`buyer-signal-scanner`](buyer-signal-scanner/) | Sales | Scans X, Reddit, Hacker News, GitHub, forums, review sites and job ads for people asking for what you sell, scores their intent 1-10, and drafts the public reply and the DM for you to post. Shares the brief and exclusions with outbound-master and never sends anything. |
+
+The two sales skills are two halves of one motion: outbound-master goes to companies that fit; buyer-signal-scanner answers people already asking. Install both in one folder and point the scanner's `CONFIG_DIR`/`STATE_DIR` at the outbound skill's `config/` and `state/` so they share one brief and one exclusion list. Neither reads the other's working files; the one bridge is an explicit export.
 
 More coming. Each new skill lands as its own folder with the same shape.
 
@@ -51,10 +36,10 @@ More coming. Each new skill lands as its own folder with the same shape.
 
 If you're an agent asked to install or run a skill from this repo:
 
-1. Clone the repo and `cd` into the requested skill's folder.
-2. Find and read its `SKILL.md`. Some legacy skills keep it under `skill/`; standard skills keep it at the skill root.
-3. Follow only the installation steps and dependencies that skill declares. Do not invent a generic setup sequence.
-4. Ask the operator for what only they have, and run any preflight before doing anything real.
+1. Clone the repo and `cd` into the skill's folder.
+2. Read the skill's `README.md`, then `skill/SKILL.md`. The SKILL.md is the operating manual; read the reference file for the step you're on rather than all of them up front.
+3. Run `./install.sh`, then install `requirements.txt`.
+4. Ask the operator for what only they have (credentials, the business brief), and run the skill's preflight before doing anything real.
 5. Respect the skill's guards. If a skill ships a dry-run mode, it starts on.
 
 ## Design rules every skill here follows
