@@ -1,0 +1,80 @@
+# Which sources to scan, with what, and the thresholds. Copy to config/ and edit.
+# Nothing here is read by the outbound skill.
+
+thresholds:
+  max_age_days: 14        # older than this is history, not a signal
+  save_min_score: 5       # below this: rejected, logged in seen_signals.csv
+  reply_min_score: 5      # public reply drafted at or above
+  dm_min_score: 7         # DM drafted at or above
+  min_confidence: 5       # below this: needs_review, no drafts
+
+# Queries are in the customer's words for the problem, not your product category.
+# Under 15 per source. Drop the ones that return nothing three runs running.
+sources:
+  x:
+    enabled: true
+    access: browser
+    reply_max_words: 60
+    allow_links: false
+    queries:
+      - '"anyone recommend" <your problem>'
+      - '"which provider" <your problem>'
+      - '"switching from" <competitor>'
+  reddit:
+    enabled: true
+    access: script          # falls back to browser on 403/429
+    reply_max_words: 120
+    allow_links: false
+    subreddits: [startups, SaaS]
+    no_reply_subreddits: []  # vendor replies banned; DM draft only
+    queries:
+      - '<your problem>'
+      - '<competitor> alternative'
+  hn:
+    enabled: true
+    access: script
+    reply_max_words: 120
+    allow_links: true
+    queries:
+      - 'Ask HN <your problem>'
+  github:
+    enabled: true
+    access: script
+    reply_max_words: 120
+    allow_links: true
+    queries:
+      - '<your problem> is:issue'
+  producthunt:
+    enabled: false
+    access: browser
+    reply_max_words: 80
+    allow_links: false
+    queries: []
+  forum:
+    enabled: false
+    access: browser
+    reply_max_words: 120
+    allow_links: false
+    sites: []               # e.g. indiehackers.com, dev.to
+    queries: []
+  reviews:
+    enabled: false
+    access: browser
+    reply_max_words: 0      # reviews get no public reply; export or DM
+    allow_links: false
+    competitors: []
+    queries: []
+  jobs:
+    enabled: false
+    access: browser
+    reply_max_words: 0
+    allow_links: false
+    role_titles: []
+    queries: []
+
+# Learned from the correction loop. The agent proposes entries; you approve them.
+reject_if:
+  author_is_vendor: true
+  author_is_student: true
+  thread_has_vendor_replies_over: 30
+  phrases: []               # e.g. "for a school project"
