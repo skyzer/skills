@@ -1,51 +1,45 @@
 # skills
 
-Agent skills that help a small company ship, win its first users, and reach its first revenue.
-
-Each skill replaces a specialist a small company can't afford to hire yet, and each is self-contained in its own folder: instructions, scripts, example config, and a real example of its output. They run on Claude Code, Claude Cowork, Codex, or anything else that reads files and runs a shell. State lives in files you own, not in a vendor.
+Agent skills that help a small company build and ship software, win its first users, and reach its first revenue.
 
 ## Install
 
-Point your agent at this repo and name the skill:
+Ask your agent to install a named skill from this repository.
+
+> Install the ci-performance-audit skill from github.com/skyzer/skills and use it to audit our recent CI runs.
+
+For manual installation, copy the named folder into your agent's skills directory, such as `~/.codex/skills/` or `~/.claude/skills/` for a user-wide installation. Keep its `SKILL.md` and references together. Check the skill's prerequisites before running it.
+
+## Engineering skills
+
+| Skill | Use it to |
+| --- | --- |
+| [`feature-delivery`](feature-delivery/SKILL.md) | Take a feature from brief through a prototype or behavior example, plan, implementation, and review. |
+| [`e2e-proof`](e2e-proof/SKILL.md) | Exercise a browser, API, or voice workflow end to end and record what actually happened. |
+| [`ci-performance-audit`](ci-performance-audit/SKILL.md) | Measure CI feedback time and runner-minutes, then rank improvements you can verify against a baseline. |
+| [`delegate-wave`](delegate-wave/SKILL.md) | Delegate bounded coding tasks to DeepSeek through Pi while the controller owns design, review, and release. |
+
+Start with feature delivery to agree on behavior and build the change. Use E2E proof when you need evidence from a running candidate. Run the CI audit whenever feedback time or runner cost needs attention. Each skill can also be used on its own.
+
+The CI audit was inspired by [StarSling's CI speedup skill](https://github.com/starslingdev/skills#ci-speedup).
+
+### Delegating coding tasks
+
+| Role | What it does |
+| --- | --- |
+| **Codex or Claude** | Decomposes the task, makes architecture and product decisions, defines acceptance checks, reviews the diff, and owns commits, PRs, merges, and releases. |
+| **DeepSeek V4 Flash** | Handles bounded discovery, mechanical implementation, and test generation through Pi. |
+| **DeepSeek V4 Pro** | Handles a difficult, well-specified task after Flash fails once or review finds a reasoning defect. |
+
+`delegate-wave` requires Python 3, Git, [Pi](https://pi.dev) 0.84.1 or newer, and a DeepSeek API key available through `DEEPSEEK_API_KEY` or Pi's native credential store. It has no Python package dependencies.
+
+## Sales skills
+
+[`outbound-master`](outbound-master/) runs B2B cold outbound from lead research and qualification through message drafting, address verification, scheduled sends, and reply drafts for human approval. It records each touch in an append-only event log.
 
 > Install the outbound-master skill from github.com/skyzer/skills and set it up.
 
-For bounded Pi/DeepSeek coding delegation:
-
-> Install the delegate-wave skill from github.com/skyzer/skills and use it for this repository task.
-
-`delegate-wave` uses a controller-worker model rather than delegating everything:
-
-| Role | What it does |
-|---|---|
-| **Codex or Claude: controller** | Decomposes the task, makes architecture and product decisions, defines acceptance checks, reviews the diff, and owns commits, PRs, merges, and releases. |
-| **DeepSeek V4 Flash: default worker** | Handles bounded discovery, mechanical implementation, and test generation through Pi. |
-| **DeepSeek V4 Pro: fallback worker** | Handles a difficult, well-specified task only after Flash fails once or review finds a reasoning defect. |
-
-This keeps expensive controller context focused on judgment while moving only
-explicit, verifiable work packets to a lower-cost worker.
-
-That's the whole request. The agent fetches the named skill, reads its `SKILL.md`, and performs only the setup that skill declares. Everything an agent needs to know is in each skill's folder; nothing here assumes a human at a terminal.
-
-Doing it by hand instead:
-
-```bash
-git clone https://github.com/skyzer/skills
-cd skills/outbound-master
-./install.sh
-pip3 install -r requirements.txt
-```
-
-`delegate-wave` requires Python 3, Git, [Pi](https://pi.dev) 0.84.1 or newer, and a DeepSeek API key available through `DEEPSEEK_API_KEY` or Pi's native credential store. It has no Python package dependencies. Install it by linking or copying `delegate-wave/` into `~/.codex/skills/delegate-wave` or the equivalent skills directory for your agent.
-
-## The skills
-
-| Skill | Function | What it does |
-|---|---|---|
-| [`outbound-master`](outbound-master/) | Sales | Runs B2B cold outbound end to end: sources, scores, researches a dated hook, writes and deslops the copy, verifies every address, sends idempotently on a spaced schedule, tracks every touch in an append-only event log, and drafts replies a human approves. Refuses to send when it shouldn't. |
-| [`delegate-wave`](delegate-wave/) | Engineering | Keeps Codex or Claude in control of decomposition, architecture, diff review, and release; delegates bounded discovery, mechanical implementation, and tests to DeepSeek Flash through Pi; and reserves DeepSeek Pro for difficult fallbacks. |
-
-More coming. Each new skill lands as its own folder with the same shape.
+For manual setup, follow the [outbound-master setup guide](outbound-master/README.md).
 
 ## For agents
 
@@ -59,7 +53,7 @@ If you're an agent asked to install or run a skill from this repo:
 
 ## Design rules every skill here follows
 
-**Configuration is separate from the engine.** Everything about your company lives in `config/`, which is gitignored. Nothing in a skill names a company, market or product.
+**Configuration is separate from the engine.** Everything about your company lives in `config/`, which is gitignored. Skills run against your project’s configuration. Published case studies may name the project they describe.
 
 **State is files, not chat.** Anything needed on the next run exists on disk, because the conversation where you explained it is gone.
 
@@ -67,7 +61,7 @@ If you're an agent asked to install or run a skill from this repo:
 
 **Skipping is free, being wrong isn't.** Every skill would rather do nothing and say why than do something plausible and wrong.
 
-**Dry run first.** If a skill touches the outside world, it has a mode that shows exactly what it would do and does nothing.
+**Plan before external actions.** Operational skills use their documented dry-run mode when available. The engineering skills can provide a plan before running metered or externally visible checks.
 
 ## Licence
 
