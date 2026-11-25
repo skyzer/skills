@@ -15,7 +15,7 @@ For manual installation, copy the named folder into your agent's skills director
 | Skill | Use it to |
 | --- | --- |
 | [`feature-delivery`](feature-delivery/SKILL.md) | Take a feature from brief through a prototype or behavior example, plan, implementation, and review. |
-| [`e2e-proof`](e2e-proof/SKILL.md) | Exercise a browser, API, or voice workflow end to end and record what actually happened. |
+| [`e2e-proof`](e2e-proof/SKILL.md) | Exercise a workflow through its normal entrypoint and record what actually happened. |
 | [`ci-performance-audit`](ci-performance-audit/SKILL.md) | Measure CI feedback time and runner-minutes, then rank improvements you can verify against a baseline. |
 | [`delegate-wave`](delegate-wave/SKILL.md) | Delegate bounded coding tasks to DeepSeek through Pi while the controller owns design, review, and release. |
 

@@ -1,17 +1,15 @@
 # Scenario examples
 
-## Browser or API
+## Browser workflow
 
-For an agent setting with a published value and an unsaved draft, test both directions of the override. Make a test session from published off and draft on, then from published on and draft off. Verify the live test session uses the draft and read the published value again after each run. Capture the setting, candidate revision, session ID, and the API response fields that prove persistence. A scripted controller and a real browser can prove different things, such as browser microphone and audio playback.
+For a setting with published and draft values, test both directions of the override. Open a preview with published off and draft on, then with published on and draft off. Assert that each preview uses the draft. Read the published value again after each run and verify it stayed the same. When testing a save, open the normal screen in a fresh session and check that it displays the persisted value.
 
-A save test should reload the normal screen from a clean client session and confirm that it displays the persisted value. An authorization test should check the protected action or data directly under the other role. For retries or races, assert the durable final state and count externally observable effects.
+## API or CLI workflow
 
-## Voice
+For a protected action, run the allowed and denied cases from the same seeded state. Assert that the denied request is rejected and leaves the resource unchanged. Assert that the allowed request succeeds and persists the intended change. For a retried write, reuse the same idempotency key or equivalent request identity and count durable effects. Capture the response or exit status along with the resulting state.
 
-Pick the routes the change affects. For browser audio, use the existing harness or a browser with a synthetic microphone feed and check what comes out at the far end.
+## Background work and external integrations
 
-In the Skysay case study, the workspace test and public browser link went through their own WebRTC entrypoints. Inbound and outbound used a local SIP loopback with the production build of the worker running locally. The scripted caller used controlled audio and recorded the other end. Provider-backed calls exercised real speech recognition, model inference and synthesis on that isolated stack. This setup exercises SIP signaling and routing locally. Label a carrier or public telephone route as tested only with separate evidence from that route.
+Trigger an import through its normal entrypoint. For a successful run, verify that the job reaches its terminal success state and that the imported data can be read. For a promised recovery path, inject a failure at the external dependency, verify that the request actually failed, and follow the same job through retry or fallback to its observable outcome. Use a job or request ID to correlate sanitized logs with what the user or downstream consumer receives.
 
-For the optional phrase spoken during a knowledge search, the normal scenario needs a plain question, a lookup with a known answer, and caller-side evidence of exactly one phrase before the grounded response. Include an off case. For failure isolation, refuse only the optional synthesis request, record that no phrase clip was prepared, and verify that the same call answers the lookup, ends normally and settles. Use a call ID to correlate evidence. Assert audio from the caller's recording when the claim is about what the caller heard. Measure question end to the first phrase and first substantive word separately, from a shared clock.
-
-A report row can read: “Browser test with phrase synthesis refused. Same call returned the correct answer, hung up normally and settled. Optional phrase count zero. The evidence was a synthetic recording and a correlated transport-failure event.”
+If you use a substitute for the external service, identify it in the evidence. An authorized sandbox run can verify the real integration path and demonstrate any external effect the scenario claims.
