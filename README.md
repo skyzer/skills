@@ -21,8 +21,6 @@ For manual installation, copy the named folder into your agent's skills director
 
 Start with feature delivery to agree on behavior and build the change. Use E2E proof when you need evidence from a running candidate. Run the CI audit whenever feedback time or runner cost needs attention. Each skill can also be used on its own.
 
-The CI audit was inspired by [StarSling's CI speedup skill](https://github.com/starslingdev/skills#ci-speedup).
-
 ### Delegating coding tasks
 
 | Role | What it does |
